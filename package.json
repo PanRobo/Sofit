@@ -1,19 +1,28 @@
 {
   "name": "sofit",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sofit is a website designed to help communities exercise together",
   "main": "index.js",
   "scripts": {
     "test": "firebase emulators:start",
-    "start": "firebase deploy"
+    "start": "firebase deploy",
+    "login": "firebase login"
   },
-  "author": "",
+  "author": "Pancake Robots",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "express-openid-connect": "^2.0.0",
     "firebase": "^7.24.0",
-    "firebase-tools": "^8.13.1",
+    "firebase-tools": "^8.16.2",
     "materialize-css": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachariahsharma/sofit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zachariahsharma/sofit/issues"
+  },
+  "homepage": "https://github.com/zachariahsharma/sofit#readme"
 }
