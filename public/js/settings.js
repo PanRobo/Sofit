@@ -21,21 +21,34 @@ if(localStorage.getItem('Person Logged in') === undefined || localStorage.getIte
     window.open('index.html', '_self')
 }else {
     const person = localStorage.getItem('Person Logged in')
-    console.log(person)
-}
-db.collection('Users').doc(`${person}`).get().then((doc) => {
-    firstName.setAttribute('placeholder', doc.data().firstname);
-    lastName.setAttribute('placeholder', doc.data().lastname)
-    email.setAttribute('placeholder', doc.data().UserEmail)
-    neighborhood.value = doc.data().whichNeighborhood
-}).then(function() {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        doc.collection('Users').doc(`${person}`).set({
-            firstname: firstName.value,
-            lastname: lastName.value,
-            email: email.value.toLowerCase(),
-            neighborhood: neighborhood.value,
+    db.collection('Users').doc(`${person}`).get().then((doc) => {
+        if(doc.data().firstname === undefined) {
+            firstName.setAttribute('placeholder', 'Update This!')
+        }else{
+            firstName.setAttribute('value', doc.data().firstname);
+        }
+        if(doc.data().lastname === undefined) {
+            lastName.setAttribute('placeholder', 'Update This!')
+        }else{
+            lastName.setAttribute('value', doc.data().lastname)
+        }
+        if(doc.data().UserEmail === undefined) {
+            email.setAttribute('placeholder', 'Update This!')
+        }else{
+            email.setAttribute('value', doc.data().UserEmail)
+        }
+        neighborhood.value = doc.data().whichNeighborhood
+    }).then(function() {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            db.collection('Users').doc(`${person}`).set({
+                firstname: firstName.value,
+                lastname: lastName.value,
+                UserEmail: email.value.toLowerCase(),
+                WhichNeighborhood: neighborhood.value,
+            }, { merge: true}).then(function() {
+                window.open('main.html', '_self')
+            })
         })
     })
-})
+}

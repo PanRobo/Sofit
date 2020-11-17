@@ -3,6 +3,7 @@ const invit = document.querySelector('#Invitedexercises')
 const active = document.querySelector('#activeExercises')
 const addnoties = document.querySelector('#add-noties')
 const noThanks = document.querySelector('#no-thanks');
+const goSettings = document.querySelector('#go-settings');
 let accept;
 let i;
 let docid;
@@ -14,6 +15,7 @@ let date_now;
 let notification;
 let date_tommorow;
 let noteneeds;
+let rejected;
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTbG4Q4dgjviI7yKZQne0IE78W9wk0JeE",
@@ -35,6 +37,13 @@ if(localStorage.getItem('Person Logged in')) {
     let docRef = db.collection('Users').doc(`${person}`)
     docRef.get().then(function(doc) {
         if(doc.exists || doc != null){
+            if(doc.data().UserEmail === undefined|| doc.data().WhichNeighborhood === undefined|| doc.data().firstname === undefined || doc.data().lastname === undefined ){
+              $('#modal1').modal('open');
+              goSettings.addEventListener('click', (e) => {
+                e.preventDefault()
+                window.open('settings.html', '_self')
+              })
+            }
             email = doc.data().UserEmail
             if(doc.data().notifications === false) {
               document.querySelector('#notifications').remove()
@@ -146,6 +155,26 @@ if(localStorage.getItem('Person Logged in')) {
                         })
                     })
                 })
+                rejected = document.querySelectorAll('.Reject')
+                rejected.forEach((reject) => {
+                  reject.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    docid=reject.getAttribute('docId')
+                    document.querySelector(`#docid${docid}`).remove()
+                    docref = db.collection('Users').doc(`${email}`).collection('Invited Exercises')
+                    docref.get().then(function(doc) {
+                      db.collection('Users').doc(`${email}`).collection('deleted exercises').set({
+                        creator: doc.data().createdby,
+                        name: doc.data().name,
+                        id: doc.data().id,
+                        date: doc.data().date,
+                        time: doc.data().time
+                      })
+                      docref.delete()
+                    })
+                  })
+                })
+
             })
             
             

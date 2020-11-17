@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
+    <!--Import materialize.css-->   
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+    <link rel="stylesheet" href="./css/private.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Private Exercise</title>
@@ -43,6 +43,16 @@
             <i class="material-icons right">send</i>
           </button>
     </form>
+    <ul id="slide-out" class="side-nav">
+        <li class="name"></li>
+		<li><a href="#!">Find Exercises</a></li>
+		<li><a href="./CreateExercise.html">Create Exercises</a></li>
+		<li><a href="main.html">Profile</a></li>
+		<li><a href="settings.html">Settings</a></li>
+		<li><div class="divider"></div></li>
+		<li><a class="waves-effect" id="logout"href="#!">Log Out</a></li>
+	</ul>
+    <a id="menu" href="#" data-activates="slide-out" class="waves-effect waves-light btn btn-floating button-collapse" ><i class="material-icons">menu</i></a>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
@@ -75,12 +85,14 @@
         
         </script>
   <script src="/__/firebase/7.24.0/firebase-app.js"></script>
-
+  
   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
   <script src="/__/firebase/7.24.0/firebase-analytics.js"></script>
-
+  
   <!-- Add Firebase products that you want to use -->
   <script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
+  <script src="./index.html"></script>
   <script src="./js/private.js"></script>
+  <script src="./js/nav.js"></script>
 </body>
 </html>

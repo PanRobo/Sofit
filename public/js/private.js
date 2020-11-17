@@ -20,18 +20,7 @@ firebase.analytics();
 var db = firebase.firestore();
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    let privateId=Math.floor(Math.random() * 1000)
-    // console.log(privateId);
-    // db.collection(`Private Exercises`).doc(`${privateId}`).set({
-    //     name: `${name.value}`,
-    //     nameid: `${privateId}`,
-    // })
-    // .then(function(docRef) {
-    //     console.log("Document written with ID: ");
-    // })
-    // .catch(function(error) {
-    //     console.error("Error adding document: ", error);
-    // });
+    let privateId=Math.floor(Math.random() * 1000);
     let newform;
     let label;
     let input;
@@ -58,15 +47,21 @@ form.addEventListener('submit', (e) => {
         newform.appendChild(submitbutton)
         document.querySelector('#body').appendChild(newform)
         function HandlePeople(item) {
-            db.collection('Users').doc(`${item.value}`).collection('Invited Exercises').doc(`${privateId}`).set({
-                coming: false,
-                time: Date.now(),
-                createdby: localStorage.getItem('Person Logged in'),
-                id: privateId,
-                name: name.value,
-                time: time.value,
-                date: date.value,
-            })
+            if(item.value === localStorage.getItem('Person Logged in')) {
+                Materialize.toast('You are already added, no need to add yourself again!', 4000)
+            }else if(db.collection(`${item.value}`) === undefined) {
+                Materialize.toast('It seems like one of the people you have invited is not in Sofit', 4000)
+            }else{
+                db.collection('Users').doc(`${item.value}`).collection('Invited Exercises').doc(`${privateId}`).set({
+                    coming: false,
+                    time: Date.now(),
+                    createdby: localStorage.getItem('Person Logged in'),
+                    id: privateId,
+                    name: name.value,
+                    time: time.value,
+                    date: date.value,
+                })
+            }
         }
         newform.addEventListener('submit', (e) => {
             e.preventDefault()

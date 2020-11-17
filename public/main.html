@@ -40,7 +40,7 @@
           <ul class="tabs tabs-fixed-width">
             <li class="tab col s3"><a class="active" href="#activeExercises">Your Exercises</a></li>
             <li class="tab col s3"><a  href="#Invitedexercises">Invited Exercises</a></li>
-            <li class="tab col s3"><a href="#test3">Exercises That are possible</a></li>
+            <li class="tab col s3"><a href="#test3">Deleted Exercises</a></li>
             <li class="tab col s3"><a href="#test4">Your Previous Exercises</a></li>
           </ul>
         </div>
@@ -49,8 +49,25 @@
         <div id="test3" class="col s12"></div>
         <div id="test4" class="col s12"></div>
     </div>
-
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>You have settings that need to be updated!</h4>
+        <p>Please hit the go to settings button to update your settings!</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action waves-effect waves-green btn-flat" id="go-settings">Go to Settings</a>
+      </div>
+    </div>
     <ul id="slide-out" class="side-nav">
+      <li><div class="user-view">
+        <div class="background">
+          <img src="./Icon/download.png">
+        </div>
+        <a href="#!user"><img class="circle" src="./Icon/pancakerobot.jpg"></a>
+        <a href="#!name"><span class=" name" style="color:deeppink"></span></a>
+        <a href="#!email"><span class=" email" style="color: deeppink"></span></a>
+      </div></li>
         <li><a href="#!">Find Exercises</a></li>
         <li><a href="./CreateExercise.html">Create Exercises</a></li>
         <li><a href="main.html">Profile</a></li>
@@ -65,6 +82,13 @@
       if(localStorage.getItem('Person Logged in') != undefined || localStorage.getItem('Person Logged In') != null) {
         $(".button-collapse").sideNav();
       }
+    
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal({
+          dismissible: false
+        });
+      });
 
     </script>
     <script src="/__/firebase/7.24.0/firebase-app.js"></script>
@@ -73,6 +97,7 @@
     <!-- Add Firebase products that you want to use -->
     <script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/nav.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
 </body>
