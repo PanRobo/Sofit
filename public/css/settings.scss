@@ -1,6 +1,6 @@
 @import "./functions";
 #main {
-  @include centerAlign(lightblue, 5px, solid, 20px, 30%);
+  @include centerAlign(lightblue, 5px, solid, 20px, 50%);
   text-align: center;
   margin-left: auto;
   margin-right: auto;

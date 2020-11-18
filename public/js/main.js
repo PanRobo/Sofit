@@ -37,7 +37,7 @@ if(localStorage.getItem('Person Logged in')) {
     let docRef = db.collection('Users').doc(`${person}`)
     docRef.get().then(function(doc) {
         if(doc.exists || doc != null){
-            if(doc.data().UserEmail === undefined|| doc.data().WhichNeighborhood === undefined|| doc.data().firstname === undefined || doc.data().lastname === undefined ){
+            if(doc.data().UserEmail === undefined|| doc.data().whichNeighborhood === undefined|| doc.data().firstname === undefined || doc.data().lastname === undefined ){
               $('#modal1').modal('open');
               goSettings.addEventListener('click', (e) => {
                 e.preventDefault()
@@ -87,6 +87,7 @@ if(localStorage.getItem('Person Logged in')) {
             })
             }
             greeting.textContent = `Hello there ${doc.data().firstname}`
+            db.collection('Users').doc(`${email}`).collection('deleted exercises')
             db.collection('Users').doc(`${email}`).collection('Accepted Invitations').onSnapshot((snaps) => { 
               active.innerHTML = ''
                 snaps.forEach((doc) => {
@@ -161,9 +162,9 @@ if(localStorage.getItem('Person Logged in')) {
                     e.preventDefault()
                     docid=reject.getAttribute('docId')
                     document.querySelector(`#docid${docid}`).remove()
-                    docref = db.collection('Users').doc(`${email}`).collection('Invited Exercises')
-                    docref.get().then(function(doc) {
-                      db.collection('Users').doc(`${email}`).collection('deleted exercises').set({
+                    docref = db.collection('Users').doc(`${email}`).collection('Invited Exercises').doc(`${docid}`)
+                    docref.get().then((doc) => {
+                      db.collection('Users').doc(`${email}`).collection('deleted exercises').doc(`${docid}`).set({
                         creator: doc.data().createdby,
                         name: doc.data().name,
                         id: doc.data().id,

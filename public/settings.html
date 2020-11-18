@@ -36,6 +36,12 @@
 				</div>
 				<div class="row">
 					<div class="input-field">
+						<input id="password" type="password" class="validate">
+						<label for="password">Password</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field">
 						<div class="input-field col s12">
 							<select id="neighborhood">
 								<option value="" disabled selected>Choose your option</option>
@@ -55,6 +61,10 @@
 		</div>
 	</div>
 	<ul id="slide-out" class="side-nav">
+		<li><div class="user-view">
+			<a href="#!name"><span class=" name" style="color:deeppink"></span></a>
+			<a href="#!email"><span class=" email" style="color: deeppink"></span></a>
+		  </div></li>
 		<li><a href="#!">Find Exercises</a></li>
 		<li><a href="./CreateExercise.html">Create Exercises</a></li>
 		<li><a href="main.html">Profile</a></li>
@@ -82,5 +92,6 @@
 	 <!-- Add Firebase products that you want to use -->
 	 <script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
 	 <script src="./js/settings.js"></script>
+	 <script src="./js/nav.js"></script>
 </body>
 </html>

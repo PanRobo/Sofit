@@ -47,13 +47,17 @@
                 
     </form>
     <ul id="slide-out" class="side-nav">
-        <li><a href="#!"><i class="material-icons">cloud</i>Find Exercises</a></li>
-        <li><a href="./CreateExercise.html">Create Exercises</a></li>
-        <li><a href="main.html">Profile</a></li>
-        <li><a href="settings.html">Settings</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="waves-effect" id="logout"href="#!">Log Out</a></li>
-    </ul>
+		<li><div class="user-view">
+			<a href="#!name"><span class=" name" style="color:deeppink"></span></a>
+			<a href="#!email"><span class=" email" style="color: deeppink"></span></a>
+		  </div></li>
+		<li><a href="#!">Find Exercises</a></li>
+		<li><a href="./CreateExercise.html">Create Exercises</a></li>
+		<li><a href="main.html">Profile</a></li>
+		<li><a href="settings.html">Settings</a></li>
+		<li><div class="divider"></div></li>
+		<li><a class="waves-effect" id="logout"href="#!">Log Out</a></li>
+	</ul>
   <a href="#" data-activates="slide-out" class="button-collapse"id="menu"><i class="material-icons">menu</i></a>
     <script src="./js/CreateExercise.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -64,5 +68,12 @@
             $('select').material_select();
         });
   </script>
+  <script src="/__/firebase/7.24.0/firebase-app.js"></script>
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="/__/firebase/7.24.0/firebase-analytics.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
+  <script src="./js/initialize.js"></script>
+  <script src="./js/nav.js"></script>
 </body>
 </html>

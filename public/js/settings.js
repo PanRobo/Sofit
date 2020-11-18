@@ -3,6 +3,7 @@ const firstName = document.querySelector('#first_name');
 const lastName = document.querySelector('#last_name');
 const email = document.querySelector('#email');
 const neighborhood = document.querySelector('#neighborhood');
+const password = document.querySelector('#password');
 const firebaseConfig = {
     apiKey: "AIzaSyCTbG4Q4dgjviI7yKZQne0IE78W9wk0JeE",
     authDomain: "sofit-cc1f1.firebaseapp.com",
@@ -31,6 +32,11 @@ if(localStorage.getItem('Person Logged in') === undefined || localStorage.getIte
             lastName.setAttribute('placeholder', 'Update This!')
         }else{
             lastName.setAttribute('value', doc.data().lastname)
+        }
+        if(doc.data().userPassword === undefined) {
+            password.setAttribute('placeholder', 'Update This!')
+        }else{
+            password.setAttribute('value', doc.data().userPassword)
         }
         if(doc.data().UserEmail === undefined) {
             email.setAttribute('placeholder', 'Update This!')

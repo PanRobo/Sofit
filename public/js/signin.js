@@ -15,10 +15,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.firestore();
-console.log('hello');
 form.addEventListener('submit', (e) => {
     const email_value = email.value.toLowerCase()
-
     let docRef = db.collection('Users').doc(`${email_value}`)
     e.preventDefault()
     docRef.get().then(function(doc) {
@@ -26,7 +24,12 @@ form.addEventListener('submit', (e) => {
             if(doc.data().userPassword === pass.value) {
                 window.open('main.html', '_self')
             }else{
-                console.log('wrong password');
+                if(doc.data().userPassword === undefined) {
+                    var $toastContent = $(`<span>You don't have a password, head on over to signup to get one</span>`).add($('<a class="btn-flat toast-action" href="./signup.html">Signup</a>'));
+  Materialize.toast($toastContent, 10000);
+                }else{
+                    Materialize.toast('Wrong password', 4000)
+                }
             }
             localStorage.setItem('Person Logged in', `${email.value}`)
         } else {

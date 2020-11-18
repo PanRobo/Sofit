@@ -22,6 +22,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.firestore();
+var auth = firebase.auth()
+firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
 form.addEventListener("submit", (e) => {
   email_value = email.value.toLowerCase() 
   e.preventDefault();
@@ -31,8 +33,6 @@ form.addEventListener("submit", (e) => {
   } else {
     db.collection("Users").doc(`${email_value}`)
       .set({
-        UserEmail: email_value,
-        userPassword: password.value,
         whichNeighborhood: neighborhood.value,
         firstname: first_name.value,
         lastname: last_name.value
